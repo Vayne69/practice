@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.ExecutionException;
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Aspect
 @Configuration
+@Order(2)
 public class LimitAspect {
     //根据ip分不同的令牌桶，每天自动清理缓存
     private static LoadingCache<String, RateLimiter> cache = CacheBuilder.newBuilder()

@@ -1,5 +1,6 @@
 package com.example.practice;
 
+import com.example.practice.aopAspect.TargetClass;
 import com.example.practice.config.ComponentProperties;
 import com.example.practice.test.PropertiesTest;
 import com.example.practice.test.ValueTest;
@@ -28,11 +29,15 @@ public class PracticeApplication implements CommandLineRunner {
     ValueTest valueTest;
     @Autowired
     PropertiesTest propertiesTest;
+    @Autowired
+    TargetClass targetClass;
 
     @Override
     public void run(String... args) throws Exception {
-        String s = valueTest.toString();
-        System.out.println(s);
-        System.out.println(propertiesTest.toString());
+        // String s = valueTest.toString();
+        // System.out.println(s);
+        // System.out.println(propertiesTest.toString());
+        String result = targetClass.joint("asdad", "asdda");
+        System.out.println("result:" + result);
     }
 }
