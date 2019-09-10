@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @date : 2019/8/29 13:26
  */
 @Component
-@PropertySource(value = "classpath:wechar_sdk.properties")
+@PropertySource(value = "classpath:properties/wechar_sdk.properties")
 @ConfigurationProperties(prefix = "wechar")
 @Data
 public class PropertiesTest {

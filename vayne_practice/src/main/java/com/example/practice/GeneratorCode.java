@@ -20,7 +20,7 @@ public class GeneratorCode {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         //如果这里出现空指针，直接写绝对路径即可。
-        String genCfg = "/generatorConfig.xml";
+        String genCfg = "/properties/generatorConfig.xml";
         File configFile = new File(GeneratorCode.class.getResource(genCfg).getFile());
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = null;

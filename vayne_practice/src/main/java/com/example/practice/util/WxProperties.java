@@ -15,7 +15,7 @@ import java.util.Properties;
 @Slf4j
 @Data
 public class WxProperties {
-    public static final String WECHAR_INFO = "wechar_sdk.properties";
+    public static final String WECHAR_INFO = "properties/wechar_sdk.properties";
 
     /**
      * 配置文件中的模板的编号.
