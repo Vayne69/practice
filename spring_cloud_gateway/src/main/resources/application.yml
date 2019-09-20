@@ -1,0 +1,13 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /gateway
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: all
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/

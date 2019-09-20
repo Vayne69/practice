@@ -27,19 +27,19 @@ public class PracticeApplication implements CommandLineRunner {
         // context.close();
     }
 
-    @Autowired
-    ValueTest valueTest;
-    @Autowired
-    PropertiesTest propertiesTest;
-    @Autowired
-    TargetClass targetClass;
+    // @Autowired
+    // ValueTest valueTest;
+    // @Autowired
+    // PropertiesTest propertiesTest;
+    // @Autowired
+    // TargetClass targetClass;
 
     @Override
     public void run(String... args) throws Exception {
         // String s = valueTest.toString();
         // System.out.println(s);
         // System.out.println(propertiesTest.toString());
-        String result = targetClass.joint("asdad", "asdda");
-        System.out.println("result:" + result);
+        // String result = targetClass.joint("asdad", "asdda");
+        // System.out.println("result:" + result);
     }
 }

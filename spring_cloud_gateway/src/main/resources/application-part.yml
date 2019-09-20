@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: hystrix_route
+          uri: http://localhost:8002
+          predicates:
+            - Host=localhost:8090
+          filters:
+            - name: CustomHystrix
+              args:
+                id: CustomHystrix
+                fallbackUri: forward:/fallback
+                timeout:
+                  # 这里暂时用-分隔URL，因为/不支持
+                  hui-test-part: 2000
+                  hui-timeout-test: 2000
+#        - id: test
+#          uri: http://localhost:8003
+#          predicates:
+#            - Host=localhost:8090
+#          filters:
+#            - name: CustomHystrix
+#              args:
+#                id: CustomHystrix
+#                fallbackUri: forward:/fallback
+#                timeout:
+#                  # 这里暂时用-分隔URL，因为/不支持
+#                  zheng-timeout-test: 2000
+
+

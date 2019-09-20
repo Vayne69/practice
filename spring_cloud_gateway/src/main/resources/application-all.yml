@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: order_route
+          uri: http://localhost:8002
+          predicates:
+            - Path=/hui/**
+          filters:
+            - name: Hystrix
+              args:
+                name: HystrixCommand
+                fallbackUri: forward:/fallback/test
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 20000
+#执行超时时间为1秒
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 1000
