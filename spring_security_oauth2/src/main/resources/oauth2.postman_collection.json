@@ -1,0 +1,153 @@
+{
+  "id": "fe396c9f-392c-4d14-a36a-236cfe36dbd9",
+  "name": "oauth2",
+  "description": "",
+  "auth": null,
+  "events": null,
+  "variables": [],
+  "order": [
+    "ea409c1e-80bd-4143-92a9-cbffddbdfa09",
+    "efb245f0-cabe-4eea-9818-dab7fdfbdb7a",
+    "1b8d1e36-82bd-4bf9-b190-c55abf2c60d6"
+  ],
+  "folders_order": [],
+  "folders": [],
+  "requests": [
+    {
+      "id": "1b8d1e36-82bd-4bf9-b190-c55abf2c60d6",
+      "name": "http://localhost:8080/oauth/token",
+      "url": "http://localhost:8080/oauth/token",
+      "description": "",
+      "data": [
+        {
+          "key": "grant_type",
+          "value": "refresh_token",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "refresh_token",
+          "value": "d620669a-d8fc-4c92-8d54-e6317e24d4d6",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "client_id",
+          "value": "password",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "client_secret",
+          "value": "123",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "urlencoded",
+      "headerData": [
+        {
+          "key": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": [],
+      "folder": null,
+      "headers": "Content-Type: application/x-www-form-urlencoded\n",
+      "pathVariables": {}
+    },
+    {
+      "id": "ea409c1e-80bd-4143-92a9-cbffddbdfa09",
+      "name": "http://localhost:8080/oauth/token",
+      "url": "http://localhost:8080/oauth/token",
+      "description": "123",
+      "data": [
+        {
+          "key": "username",
+          "value": "zhs",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "password",
+          "value": "123",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "grant_type",
+          "value": "password",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "client_id",
+          "value": "password",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "scope",
+          "value": "all",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "client_secret",
+          "value": "123",
+          "description": "",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "headerData": [],
+      "method": "POST",
+      "pathVariableData": [],
+      "queryParams": [],
+      "auth": null,
+      "events": [],
+      "folder": null,
+      "headers": "",
+      "pathVariables": {}
+    },
+    {
+      "id": "efb245f0-cabe-4eea-9818-dab7fdfbdb7a",
+      "name": "http://localhost:8080/admin/hello?access_token=05c8c1d6-3291-43dc-9e85-b2b5e3fdd83c",
+      "url": "http://localhost:8080/admin/hello?access_token=05c8c1d6-3291-43dc-9e85-b2b5e3fdd83c",
+      "description": "",
+      "data": null,
+      "dataMode": "params",
+      "headerData": [],
+      "method": "GET",
+      "pathVariableData": [],
+      "queryParams": [
+        {
+          "key": "access_token",
+          "value": "05c8c1d6-3291-43dc-9e85-b2b5e3fdd83c",
+          "equals": true,
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "auth": null,
+      "events": [],
+      "folder": null,
+      "headers": "",
+      "pathVariables": {}
+    }
+  ]
+}
