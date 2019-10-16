@@ -1,6 +1,9 @@
 package com.forte.util.utils;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -11,6 +14,7 @@ import java.util.Properties;
  */
 
 public class PropertiesUtils {
+    private static final Logger logger = LoggerFactory.getLogger(PropertiesUtils.class);
 
     /**
      * 根据key读取value
@@ -29,6 +33,7 @@ public class PropertiesUtils {
             }
             return prop;
         } catch (Exception e) {
+            logger.error(e.getMessage());
             return null;
         } finally {
             try {
@@ -36,6 +41,7 @@ public class PropertiesUtils {
                     in.close();
                 }
             } catch (IOException e) {
+                logger.error(e.getMessage());
             }
         }
     }

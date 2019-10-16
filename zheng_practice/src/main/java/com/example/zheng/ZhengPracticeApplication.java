@@ -28,7 +28,7 @@ public class ZhengPracticeApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         ErrorCenter errorCenter = applicationContext.getBean(ErrorCenter.class);
-        System.out.println(errorCenter.getReturn("aaa", "aaaa", "aaaa", null));
+        System.out.println(errorCenter.getReturn("aaa", "aaaa", "aaaa"));
 
     }
 }
