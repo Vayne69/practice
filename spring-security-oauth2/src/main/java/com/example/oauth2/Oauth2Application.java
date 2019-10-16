@@ -1,13 +1,13 @@
-package com.example.zheng_practice;
+package com.example.oauth2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ZhengPracticeApplication {
+public class Oauth2Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(ZhengPracticeApplication.class, args);
+        SpringApplication.run(Oauth2Application.class, args);
     }
 
 }

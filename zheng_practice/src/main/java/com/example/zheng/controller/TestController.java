@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TestController {
 
-    @RequestMapping("/timeout/test")
+    @RequestMapping("/timeout/test.tml")
     public String timeout() throws InterruptedException {
         log.info("invoking timeout endpoint .......");
         Thread.sleep(20000);
-        return "success";
+        return "###########aaaaaaaaaaaaaaaaaaa##########";
     }
 }
