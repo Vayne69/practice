@@ -11,7 +11,6 @@ import java.util.*;
  * double浮点型参数解析器，相对与指令解析，此解析器相对比较简单。
  * 只需要根据区间参数，获取相应的浮点数即可
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 class DoubleParser extends BaseFieldParser {
 
@@ -24,7 +23,6 @@ class DoubleParser extends BaseFieldParser {
     /**
      * 当字段既不是集合也不是数组的时候，获取其字段值获取器
      * 字段不是集合也不是数组，且参数为Double，则说明区间参数代表了取值的随机范围
-     *
      * @return
      */
     @Override
@@ -44,7 +42,6 @@ class DoubleParser extends BaseFieldParser {
      * 如果字段为集合，参数为Double
      * 则区间参数变为List集合的长度区间，将无视小数部分的区间参数
      * list集合的值为默认值
-     *
      * @return
      */
     @Override
@@ -65,7 +62,6 @@ class DoubleParser extends BaseFieldParser {
      * 当字段是数组的时候，获取其字段值获取器
      * 如果字段为数组，参数为Double
      * 则区间参数变为数组的长度区间，将无视小数部分的区间参数
-     *
      * @return
      */
     @Override
@@ -85,9 +81,9 @@ class DoubleParser extends BaseFieldParser {
     }
 
 
+
     /**
      * 仅获取整数部分的区间参数
-     *
      * @return
      */
     private Integer[] getIntIntervalsData() {
@@ -127,7 +123,6 @@ class DoubleParser extends BaseFieldParser {
 
     /**
      * 仅获取小数部分的区间参数
-     *
      * @return
      */
     private Integer[] getDoubleIntervalsData() {
@@ -168,8 +163,8 @@ class DoubleParser extends BaseFieldParser {
 
     /**
      * 获取转化好的区间参数
-     *
-     * @return 返回值为二维数组，
+     * @return
+     * 返回值为二维数组，
      * 索引0为整数部分的区间数组，[0]为左参数，[1]为右参数
      * 索引1为小数部分的区间参数，[0]为左参数，[1]为右参数
      * 假如返回值为null，则说明没有区间参数

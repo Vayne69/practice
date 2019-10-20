@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * 获取一个随机中文姓名 代码灵感来源于网络 讲道理，效果不是特别好 而且关于字符编码的转换也不确定处理的好
  *
- * @author ForteScarlet
+ * @author Administrator
  */
 public class ChineseUtil {
 

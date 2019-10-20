@@ -6,7 +6,7 @@ import com.forte.util.utils.MethodUtil;
 import javax.script.ScriptException;
 
 /**
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  */
 public class ObjectFieldValueGetter implements FieldValueGetter<Object> {
 

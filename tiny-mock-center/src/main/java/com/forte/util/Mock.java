@@ -21,37 +21,7 @@ import java.util.stream.Collectors;
 /**
  * <h4>
  * javaBean假数据生成工具
- * </h4>
- * <p>
- * 使用静态方法：{@link #set(Class, Map)} 来添加一个类的假数据类型映射<br>
- * 语法基本与Mock.js中的类似，字符串参数中可以使用<code>@+方法名</code>的方式指定随机方法(随机方法详见{@link MockUtil},此类也可以直接使用)
- * </p>
- * <p>
- * <ul>
- *     <li>使用的时候，请务必保证填充假数据的字段有他的getter方法</li>
- *     <li>使用多层级赋值的时候，请注意保证多层级中涉及的深层对象有无参构造方法</li>
- * </ul>
- * </p>
- * <p>
- *  为类中的引用类型对象赋值的时候，有两种方式：
- *  <ul>
- *      <li>
- *          <code>
- *              map.set("user" , new HashMap<String , Object>)
- *          </code>
- *         ->  即为字段再配置一个map映射集合
- *      </li>
- *      <li>
- *          <code>
- *              map.set("user.name" , "@cname")
- *          </code>
- *         ->  使用"."分割，即使用多层级对象赋值，此方式需要保证引用类型的对象有无参构造，且字段有getter方法
- *      </li>
- *  </ul>
- * </p>
- *
- * @author ForteScarlet
- * @version 0.5-beta
+ * @author Administrator
  */
 public class Mock {
 
@@ -114,11 +84,11 @@ public class Mock {
     private static final Map<String, Method> MOCK_METHOD;
 
 
+
     /**
      * 添加一个数据映射
-     *
-     * @param objClass 映射类型
-     * @param map      映射对应值
+     * @param objClass  映射类型
+     * @param map       映射对应值
      * @return 映射结果表
      */
     public static <T> MockBean<T> setResult(Class<T> objClass, Map<String, Object> map, boolean reset) {
@@ -143,10 +113,9 @@ public class Mock {
 
     /**
      * 添加一个map类型的映射
-     *
-     * @param resultName 映射名
-     * @param map        映射值
-     * @param reset      是否覆盖
+     * @param resultName    映射名
+     * @param map           映射值
+     * @param reset         是否覆盖
      */
     public static MockMapBean setResult(String resultName, Map<String, Object> map, boolean reset) {
         //如果不是重新设置且此映射已经存在，并且objClass对象存在，将会抛出异常
@@ -195,6 +164,7 @@ public class Mock {
      *                          map.put("friend.name" , "@cname");
      *                      </code>
      *                 </p>
+     *
      */
     public static <T> void set(Class<T> objClass, Map<String, Object> map) {
         //设置并保存映射，不可覆盖
@@ -222,10 +192,8 @@ public class Mock {
 
     /**
      * 添加数据记录，如果要添加的映射已存在，则会抛出异常
-     *
      * @param resultName
      * @param map
-     * @param <T>
      */
     public static void set(String resultName, Map<String, Object> map) {
         //设置并保存映射，不可覆盖
@@ -235,7 +203,6 @@ public class Mock {
 
     /**
      * 添加数据记录，如果要添加的映射已存在，则会覆盖
-     *
      * @param objClass
      * @param map
      * @param <T>
@@ -266,7 +233,6 @@ public class Mock {
 
     /**
      * 添加数据记录，如果要添加的映射已存在，则会覆盖
-     *
      * @param resultName
      * @param map
      * @param <T>
@@ -303,7 +269,6 @@ public class Mock {
 
     /**
      * 获取方法加载器
-     *
      * @return
      */
     public static MethodLoader mockMethodLoader() {
@@ -312,8 +277,8 @@ public class Mock {
 
     /**
      * 获取Mock方法集合
-     *
-     * @return 全部已被加载的映射方法
+     * @return
+     * 全部已被加载的映射方法
      */
     public static Map<String, Method> _getMockMethod() {
         //为了保护原本的字段，使用流对Map进行复制

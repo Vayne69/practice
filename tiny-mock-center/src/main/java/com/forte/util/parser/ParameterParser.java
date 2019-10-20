@@ -17,8 +17,6 @@ import java.util.*;
 /**
  * 参数解析器，用于解析用户填入的参数语法
  * 解析包({@link com.forte.util.parser})下唯一公共接口，为{@link Mock}解析用户参数
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 public class ParameterParser {
 
@@ -78,20 +76,24 @@ public class ParameterParser {
     /**
      * 对参数进行解析-map类型
      *
-     * @param paramMap 参数集合
+     * @param paramMap    参数集合
      */
-    public static <T> MockMapBean parser(Map<String, Object> paramMap) {
+    public static MockMapBean parser(Map<String, Object> paramMap) {
         //使用线程安全list集合
-        List<MockField> fields = Collections.synchronizedList(new ArrayList<>());
+        List<MockField> fields = new ArrayList<>();
+
         //遍历并解析-（多线程同步）
         //如果是.entrySet().parallelStream().forEach的话，似乎会出现一个迷之bug
         //如果结果没有任何输出语句打印控制台，会报NullPointer的错
         //已解决，需要使fields这个集合成为线程安全的集合
-        paramMap.entrySet().parallelStream().forEach(e -> {
+         /*
+            2019/10/18
+            不是干什么都是多线程是好的的，所以遍历不在使用多线程遍历了~
+         */
+        paramMap.forEach((key, value) -> {
             //解析
-            Object value = e.getValue();
             //切割名称，检测是否有区间函数
-            String[] split = e.getKey().split("\\|");
+            String[] split = key.split("\\|");
             //字段名
             String fieldName = split[0];
             //区间参数字符串
@@ -108,12 +110,11 @@ public class ParameterParser {
 
     /**
      * 解析
-     *
-     * @param objectClass 封装类型
-     * @param fieldName   字段名称
-     * @param intervalStr 区间字符串
-     * @param value       参数
-     * @param fields      保存字段用的list
+     * @param objectClass   封装类型
+     * @param fieldName     字段名称
+     * @param intervalStr   区间字符串
+     * @param value         参数
+     * @param fields        保存字段用的list
      */
     private static void parser(Class<?> objectClass, String fieldName, String intervalStr, Object value, List<MockField> fields) {
             /*
@@ -175,7 +176,6 @@ public class ParameterParser {
 
     /**
      * 字符串类型参数解析
-     *
      * @param objectClass
      * @param fieldName
      * @param intervalStr
@@ -191,7 +191,6 @@ public class ParameterParser {
 
     /**
      * double浮点类型解析
-     *
      * @param objectClass
      * @param fieldName
      * @param intervalStr
@@ -207,7 +206,6 @@ public class ParameterParser {
 
     /**
      * 整数类型解析
-     *
      * @param objectClass
      * @param fieldName
      * @param intervalStr
@@ -240,7 +238,6 @@ public class ParameterParser {
 
     /**
      * 未知的引用数据类型解析
-     *
      * @param objectClass
      * @param fieldName
      * @param intervalStr
@@ -257,7 +254,6 @@ public class ParameterParser {
 
     /**
      * Map集合类型解析
-     *
      * @param objectClass
      * @param fieldName
      * @param intervalStr
@@ -265,12 +261,32 @@ public class ParameterParser {
      * @return
      */
     private static MockField mapTypeParse(Class objectClass, String fieldName, String intervalStr, Object value) {
+
+
+        //解析区间字符串 - 只关心整数部分字符串
+        //切割取整数位
+        Integer intervalMin, intervalMax;
+        // 区间数组，左区间与右区间
+        Integer[] integerInterval = new Integer[2];
+        if (intervalStr != null) {
+            String integerIntervalStr = intervalStr.split("\\.")[0].trim();
+            //如果不是空的，切割并记录
+            String[] splitIntInterval = integerIntervalStr.split("-");
+            intervalMin = Integer.parseInt(splitIntInterval[0]);
+            intervalMax = splitIntInterval.length > 1 ? Integer.parseInt(splitIntInterval[1]) : null;
+            integerInterval[0] = intervalMin;
+            integerInterval[1] = intervalMax == null ? intervalMin : intervalMax;
+        } else {
+            intervalMin = intervalMax = null;
+            integerInterval = null;
+        }
+
         //如果是一个Map集合，说明这个字段映射着另一个假对象
         //也有可能只是一个普通的Map而不是映射关系
         //需要判断字段的类型，如果字段类型也是Map，则不进行映射解析而是转化为ObjectField
         //这个Map集合对应的映射类型应当必然是此字段的类型
         //获取此字段的class类型
-        Class fieldClass;
+        Class<?> fieldClass;
         if (objectClass != null) {
             fieldClass = FieldUtils.fieldClassGetter(objectClass, fieldName);
         } else {
@@ -281,7 +297,7 @@ public class ParameterParser {
         //判断类型
         if (FieldUtils.isChild(fieldClass, Map.class)) {
             // 直接返回此对象作为假字段对象，不做处理
-            return getDefaultObjectMockField(fieldName, value);
+            return getDefaultObjectMockField(fieldName, value, integerInterval);
         } else if (FieldUtils.isChild(fieldClass, List.class) && FieldUtils.getListFieldGeneric(objectClass, fieldName).equals(Map.class)) {
             //如果字段类型是List集合而且集合的泛型是Map类型，使用Object类型解析器
             ObjectParser objectParser = new ObjectParser(objectClass, fieldName, intervalStr, value);
@@ -293,16 +309,16 @@ public class ParameterParser {
             //判断字段是否为list集合类型或数组类型
             if (FieldUtils.isChild(fieldClass, List.class)) {
                 //是list集合类型，获取集合的泛型类型
-                Class fieldListGenericClass = FieldUtils.getListFieldGeneric(objectClass, fieldName);
+                Class<?> fieldListGenericClass = FieldUtils.getListFieldGeneric(objectClass, fieldName);
                 //获取一个假对象
                 //同时保存此对象的解析
-                MockBean parser = Mock.setResult(fieldListGenericClass, fieldMap, true);
+                MockBean<?> parser = Mock.setResult(fieldListGenericClass, fieldMap, true);
 
                 FieldValueGetter fieldValueGetter = objectToListFieldValueGetter(parser, intervalStr);
                 return new MockField(fieldName, fieldValueGetter);
             } else if (fieldClass.isArray()) {
                 //是数组类型，获取数组的类型信息
-                Class fieldArrayGeneric = FieldUtils.getArrayGeneric(fieldClass);
+                Class<?> fieldArrayGeneric = FieldUtils.getArrayGeneric(fieldClass);
                 //获取一个假对象
 //                MockBean parser = parser(fieldArrayGeneric, fieldMap);
                 //同时保存此对象的解析
@@ -312,6 +328,15 @@ public class ParameterParser {
                 return new MockField(fieldName, fieldValueGetter);
 
             } else {
+                // 如果字段类型为Object类型且存在区间参数，视为List类型处理
+                if (fieldClass.equals(Object.class) && intervalStr != null) {
+                    // 解析这个对象, 并作为Map对象
+                    MockMapBean mockBean = Mock.setResult("", fieldMap, true);
+
+                    FieldValueGetter fieldValueGetter = objectToListFieldValueGetter(mockBean, intervalStr);
+                    return new MockField(fieldName, fieldValueGetter);
+                }
+
                 //得到一个假对象数据，封装为一个MockField
 //                MockBean parser = parser(fieldClass, fieldMap);
                 //同时保存此对象的解析
@@ -330,7 +355,6 @@ public class ParameterParser {
 
     /**
      * 数组类型参数解析
-     *
      * @param objectClass
      * @param fieldName
      * @param intervalStr
@@ -349,7 +373,6 @@ public class ParameterParser {
 
     /**
      * 集合类型参数解析
-     *
      * @param objectClass
      * @param fieldName
      * @param intervalStr
@@ -369,18 +392,25 @@ public class ParameterParser {
 
     /**
      * 获取一个默认值假字段
-     *
-     * @param fieldName
-     * @param value
+     * @param fieldName       字段名
+     * @param value           默认值
+     * @param integerInterval 区间数组，如果存在的话
+     *                        如果存在区间函数，则使用ListFieldValueGetter进行构建
      * @return
      */
-    private static MockField getDefaultObjectMockField(String fieldName, Object value) {
-        return new MockField(fieldName, () -> value);
+    private static MockField getDefaultObjectMockField(String fieldName, Object value, Integer[] integerInterval) {
+        if (integerInterval == null) {
+            return new MockField(fieldName, () -> value);
+        } else {
+            return new MockField(fieldName, new ListFieldValueGetter(
+                    new Invoker[]{() -> value},
+                    integerInterval
+            ));
+        }
     }
 
     /**
      * 将一个假类对象封装为一个假字段对象
-     *
      * @param object
      * @return
      */
@@ -392,7 +422,6 @@ public class ParameterParser {
 
     /**
      * 将假字段对象转化为集合字段值获取器
-     *
      * @param object
      * @param intervalStr
      * @return
@@ -400,7 +429,6 @@ public class ParameterParser {
     private static FieldValueGetter objectToListFieldValueGetter(MockBean object, String intervalStr) {
         //创建一个方法执行者
         Invoker invoker = object::getObject;
-
         //获取区间参数
         Integer[] integers = intervalParse(intervalStr);
         //获取集合字段值获取器
@@ -409,7 +437,6 @@ public class ParameterParser {
 
     /**
      * 将假字段对象转化为数组字段值获取器
-     *
      * @param object
      * @param intervalStr
      * @return
@@ -426,7 +453,6 @@ public class ParameterParser {
 
     /**
      * 解析区间参数
-     *
      * @param intervalStr
      * @return
      */
@@ -476,7 +502,6 @@ public class ParameterParser {
 
     /**
      * 获取一个MockMapBean
-     *
      * @param fields
      * @return
      */
@@ -487,7 +512,6 @@ public class ParameterParser {
 
     /**
      * 获取一个MockMapBean
-     *
      * @param fields
      * @return
      */
@@ -513,7 +537,6 @@ public class ParameterParser {
 
     /**
      * 判断这个类型在预期类型中是哪一个类型的
-     *
      * @return
      */
     private static int typeReferee(Object object) {

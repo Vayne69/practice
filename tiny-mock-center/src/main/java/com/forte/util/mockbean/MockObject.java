@@ -11,15 +11,12 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
- * @date 2019/2/27 14:33
  */
 public interface MockObject<T> {
 
 
     /**
      * 返回获取结果的Optional封装类
-     *
      * @return
      */
     Optional<T> get();
@@ -41,7 +38,6 @@ public interface MockObject<T> {
 
     /**
      * 获取一个指定长度的流，等同于 <code>getStream().limit(limit)</code>
-     *
      * @param limit
      * @return
      */
@@ -81,7 +77,6 @@ public interface MockObject<T> {
 
     /**
      * 获取多个实例对象，根据转化规则转化后作为list集合返回
-     *
      * @param num
      * @param mapper
      * @param <R>
@@ -94,7 +89,6 @@ public interface MockObject<T> {
 
     /**
      * 获取多个实例对象，使用并行线程获取并根据指定规则进行转化，作为List返回
-     *
      * @param num
      * @param mapper
      * @param <R>
@@ -107,7 +101,6 @@ public interface MockObject<T> {
 
     /**
      * 获取多个实例对象，作为Set返回
-     *
      * @param num
      * @return
      */
@@ -118,7 +111,6 @@ public interface MockObject<T> {
 
     /**
      * 获取多个实例对象，使用并行流操作，作为Set返回
-     *
      * @param num
      * @return
      */

@@ -27,7 +27,6 @@ public class PropertiesUtils {
         InputStream in = null;
         try {
             in = PropertiesUtils.class.getClassLoader().getResourceAsStream(pathName);
-            ;
             if (in != null) {
                 prop.load(in);
             }
@@ -44,5 +43,8 @@ public class PropertiesUtils {
                 logger.error(e.getMessage());
             }
         }
+    }
+
+    private PropertiesUtils() {
     }
 }

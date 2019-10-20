@@ -5,8 +5,7 @@ import java.util.function.IntFunction;
 /**
  * 部分指定好的转化器类型
  * 接口类型，内部提供部分ArrayMapper实现类
- *
- * @author ForteScarlet <[email]ForteScarlet@163.com>
+ * @author Administrator
  * @since JDK1.8
  **/
 public interface ArrayMapperType {
@@ -47,7 +46,6 @@ public interface ArrayMapperType {
         public Integer apply(String s) {
             return Integer.parseInt(s);
         }
-
         @Override
         public IntFunction<Integer[]> getArrayParseFunction() {
             return Integer[]::new;

@@ -8,9 +8,8 @@ import com.forte.util.utils.RandomUtil;
 import java.util.Collections;
 
 /**
- * 字符串类型字段值的获取者
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * 字符串类型字段值的获取者
  */
 public class StringFieldValueGetter implements FieldValueGetter<String> {
 
@@ -32,7 +31,6 @@ public class StringFieldValueGetter implements FieldValueGetter<String> {
 
     /**
      * 获取字段值
-     *
      * @return
      */
     @Override
@@ -86,7 +84,6 @@ public class StringFieldValueGetter implements FieldValueGetter<String> {
 
     /**
      * 构造
-     *
      * @param invokers
      * @param moreStr
      */
@@ -105,7 +102,6 @@ public class StringFieldValueGetter implements FieldValueGetter<String> {
 
     /**
      * 构造，区间参数默认为[1-1]
-     *
      * @param invokers
      * @param moreStr
      */

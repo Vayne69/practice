@@ -1,14 +1,11 @@
 package com.forte.util.exception;
 
 /**
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
- * @date 2018/12/24 20:31
- * @since JDK1.8
- **/
+ * @author Administrator
+ */
 public class MockException extends RuntimeException {
     public MockException() {
     }
-
     public MockException(String message) {
         super(message);
     }

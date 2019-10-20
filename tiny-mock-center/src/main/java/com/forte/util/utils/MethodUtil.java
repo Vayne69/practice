@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 /**
  * 方法执行工具
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  */
 public class MethodUtil {
 
@@ -82,8 +82,7 @@ public class MethodUtil {
     /**
      * Filter out the Object Methods<br>
      * 过滤掉Object中继承来的方法
-     *
-     * @param methods 需要过滤的方法列表
+     * @param methods       需要过滤的方法列表
      */
     public static List<Method> getOriginal(List<Method> methods) {
         return methods.stream().parallel().filter(m -> Arrays.stream(Object.class.getMethods()).noneMatch(om -> om.equals(m))).collect(Collectors.toList());
@@ -135,7 +134,6 @@ public class MethodUtil {
 
     /**
      * 创建一个数组元素获取执行者
-     *
      * @param arr
      * @return
      */
@@ -145,7 +143,6 @@ public class MethodUtil {
 
     /**
      * 创建一个集合元素获取执行者
-     *
      * @param list
      * @return
      */

@@ -3,7 +3,7 @@ package com.forte.util.exception;
 /**
  * 参数数量不符异常
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  */
 public class ParameterSizeException extends MockException {
     public ParameterSizeException() {

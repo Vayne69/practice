@@ -3,7 +3,7 @@ package com.forte.util.fieldvaluegetter;
 /**
  * 字段值获取器
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  */
 @FunctionalInterface
 public interface FieldValueGetter<T> {

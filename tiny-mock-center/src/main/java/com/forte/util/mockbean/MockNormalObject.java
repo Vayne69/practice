@@ -5,8 +5,7 @@ import java.util.Optional;
 /**
  * 将{@link MockBean}封装并返回
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
- * @date 2018/12/11 16:11
+ * @author Administrator
  * @since JDK1.8
  **/
 public class MockNormalObject<T> implements MockObject<T> {
@@ -15,7 +14,6 @@ public class MockNormalObject<T> implements MockObject<T> {
 
     /**
      * 返回获取结果的Optional封装类
-     *
      * @return
      */
     @Override
@@ -26,7 +24,6 @@ public class MockNormalObject<T> implements MockObject<T> {
 
     /**
      * 唯一构造
-     *
      * @param mockBean
      */
     public MockNormalObject(MockBean<T> mockBean) {

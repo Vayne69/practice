@@ -8,16 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * 假字段值的字段封装对象的抽象类
  * 假的字段有几种类型：
- * <ul>
- * <li>字符串</li>
- * <li>整数</li>
- * <li>浮点数</li>
- * <li>集合</li>
- * <li>数组</li>
- * <li>引用对象</li>
- * </ul>
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  */
 public class MockField {
 
@@ -35,9 +27,9 @@ public class MockField {
     /**
      * 为传入的对象的对应的参数赋值
      * 通过FieldUtils工具类使用setter方法赋值
+     * @see FieldUtils
      *
      * @param
-     * @see FieldUtils
      */
     public void setValue(Object bean) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         FieldUtils.objectSetter(bean, fieldName, getValue());

@@ -5,8 +5,7 @@ import com.forte.util.invoker.Invoker;
 
 /**
  * 整数类型字段值获取器
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  */
 public class IntegerFieldValueGetter implements FieldValueGetter<Integer> {
 
@@ -19,7 +18,6 @@ public class IntegerFieldValueGetter implements FieldValueGetter<Integer> {
 
     /**
      * 获取一个字段值
-     *
      * @return
      */
     @Override

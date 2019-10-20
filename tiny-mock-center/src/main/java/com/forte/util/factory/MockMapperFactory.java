@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 /**
  * 生成映射Map的工厂
  *
- * @author ForteScarlet <[email]ForteScarlet@163.com>
  * @since JDK1.8
  **/
 public class MockMapperFactory {

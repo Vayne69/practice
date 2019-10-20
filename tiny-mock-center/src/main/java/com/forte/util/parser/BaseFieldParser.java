@@ -14,12 +14,8 @@ import java.util.stream.Collectors;
 
 /**
  * 所有字段解析器的抽象父类<br>
- * <br>
- * <br>
- * <br>
  * 每一个字段都有可能是集合或者数组类型的，但是每种类型的参数解析结果却又不同<br>
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 abstract class BaseFieldParser implements FieldParser {
 
@@ -51,7 +47,6 @@ abstract class BaseFieldParser implements FieldParser {
     /**
      * 获取一个封装好的MockField对象
      * 不可重写
-     *
      * @return 封装好的MockField对象
      */
     @Override
@@ -113,7 +108,6 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取匹配的方法
-     *
      * @param name 方法名
      * @return 匹配的方法合集
      */
@@ -137,7 +131,6 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取一个方法执行者
-     *
      * @param methodName
      * @return
      */
@@ -148,7 +141,6 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 为方法{@link #getMethodInvoker}服务，提供正则来获取方法名
-     *
      * @return
      */
     private static String getReplaceForNameRegex() {
@@ -157,8 +149,8 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 解析方法字符串并获取方法执行者
-     *
-     * @param methods 方法名列表
+     * @param methods
+     * 方法名列表
      * @return
      */
     protected static List<Invoker> getMethodInvoker(String[] methods) {
@@ -215,7 +207,6 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 从方法字符串中获取参数
-     *
      * @param methodStr 方法字符串
      * @return
      */
@@ -227,7 +218,6 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 通过名称获取方法
-     *
      * @param methodName   纯方法名称
      * @param paramsLength 参数数量
      * @return MockUtil中对应方法名与参数数量的方法对象，如果没有获取到则返回null
@@ -272,18 +262,17 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取随机整数方法执行者，由于整数三种参数中方法的执行类型不同，则需要分为三个方法
-     *
      * @return
      */
     private Invoker getIntegerMethodInvoker(Integer intIntervalMin, Integer intIntervalMax) {
         //拼接出方法
         StringBuilder methodBuilder = new StringBuilder();
-        methodBuilder.append(INTEGER_METHOD_NAME);
-        // .append("(")
-        // .append(intIntervalMin)
-        // .append(",")
-        // .append(intIntervalMax)
-        // .append(")");
+        methodBuilder.append(INTEGER_METHOD_NAME)
+                .append("(")
+                .append(intIntervalMin)
+                .append(",")
+                .append(intIntervalMax)
+                .append(")");
 
         //获取方法字符串
         String methodStr = methodBuilder.toString();
@@ -291,19 +280,17 @@ abstract class BaseFieldParser implements FieldParser {
         //返回方法执行者
         return getOneMethodInvoker(methodStr);
     }
-
     /**
      * 获取随机整数方法执行者，由于整数三种参数中方法的执行类型不同，则需要分为三个方法
-     *
      * @return
      */
     private Invoker getIntegerMethodInvoker(Integer intIntervalLength) {
         //拼接出方法
         StringBuilder methodBuilder = new StringBuilder();
         methodBuilder.append(INTEGER_METHOD_NAME);
-        // methodBuilder.append("(");
-        // methodBuilder.append(intIntervalLength);
-        // methodBuilder.append(")");
+        methodBuilder.append("(");
+        methodBuilder.append(intIntervalLength);
+        methodBuilder.append(")");
 
         //获取方法字符串
         String methodStr = methodBuilder.toString();
@@ -311,17 +298,14 @@ abstract class BaseFieldParser implements FieldParser {
         //返回方法执行者
         return getOneMethodInvoker(methodStr);
     }
-
     /**
      * 获取随机整数方法执行者，由于整数三种参数中方法的执行类型不同，则需要分为三个方法
-     *
      * @return
      */
     private Invoker getIntegerMethodInvoker() {
         //拼接出方法
         //获取方法字符串
-        // String methodStr = INTEGER_METHOD_NAME + "()";
-        String methodStr = INTEGER_METHOD_NAME;
+        String methodStr = INTEGER_METHOD_NAME + "()";
 
         //返回方法执行者
         return getOneMethodInvoker(methodStr);
@@ -329,7 +313,6 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取一个整数类型字段值获取器
-     *
      * @param intIntervalMin
      * @param intIntervalMax
      * @return
@@ -345,8 +328,8 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取一个整数类型字段值获取器
-     *
-     * @param intIntervalLength 整数的长度
+     * @param intIntervalLength
+     * 整数的长度
      * @return
      */
     protected IntegerFieldValueGetter getIntegerFieldValueGetter(Integer intIntervalLength) {
@@ -360,7 +343,6 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取一个整数类型字段值获取器
-     *
      * @return
      */
     protected IntegerFieldValueGetter getIntegerFieldValueGetter() {
@@ -380,13 +362,14 @@ abstract class BaseFieldParser implements FieldParser {
      * {@link com.forte.util.utils.MockUtil#doubles(Integer, Integer, Integer)}<em>获取制定区间[a,b]的小数，指定小数位数[end]，double类型</em>
      * {@link com.forte.util.utils.MockUtil#doubles(Integer, Integer)}<em>获取指定区间[a,b]的小数，默认小数位数为0，double类型</em>
      * {@link com.forte.util.utils.MockUtil#doubles(Integer)}<em>获取指定数值为a的小数，默认小数位数为0，double类型</em>
+     *
      */
     private final String DOUBLE_METHOD_NAME = "@doubles";
 
 
+
     /**
      * 获取随机小数的方法执行者
-     *
      * @param intIntervalMin
      * @param intIntervalMax
      * @param doubleIntervalMin
@@ -396,15 +379,15 @@ abstract class BaseFieldParser implements FieldParser {
     private Invoker getDoublesMethodInvoker(Integer intIntervalMin, Integer intIntervalMax, Integer doubleIntervalMin, Integer doubleIntervalMax) {
         StringBuilder strForMethod = new StringBuilder();
         strForMethod.append(DOUBLE_METHOD_NAME);
-        // strForMethod.append("(");
-        // strForMethod.append(intIntervalMin);
-        // strForMethod.append(",");
-        // strForMethod.append(intIntervalMax);
-        // strForMethod.append(",");
-        // strForMethod.append(doubleIntervalMin);
-        // strForMethod.append(",");
-        // strForMethod.append(doubleIntervalMax);
-        // strForMethod.append(")");
+        strForMethod.append("(");
+        strForMethod.append(intIntervalMin);
+        strForMethod.append(",");
+        strForMethod.append(intIntervalMax);
+        strForMethod.append(",");
+        strForMethod.append(doubleIntervalMin);
+        strForMethod.append(",");
+        strForMethod.append(doubleIntervalMax);
+        strForMethod.append(")");
 
         String methodStr = strForMethod.toString();
 
@@ -415,14 +398,13 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取小数字段值获取器
-     *
-     * @param intInterval 整数部分数值
+     * @param intInterval
+     * 整数部分数值
      * @return
      */
     protected DoubleFieldValueGetter getDoubleFieldValueGetter(Integer intInterval) {
         //获取方法执行者
-        // String methodName = DOUBLE_METHOD_NAME + "("+ intInterval +")";
-        String methodName = DOUBLE_METHOD_NAME;
+        String methodName = DOUBLE_METHOD_NAME + "(" + intInterval + ")";
         //获取方法执行者
         Invoker oneMethodInvoker = getOneMethodInvoker(methodName);
 
@@ -432,9 +414,10 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取小数字段值获取器
-     *
-     * @param intIntervalMin 整数部分区间最小值
-     * @param intIntervalMax 整数部分区间最大值
+     * @param intIntervalMin
+     * 整数部分区间最小值
+     * @param intIntervalMax
+     * 整数部分区间最大值
      * @return
      */
     protected DoubleFieldValueGetter getDoubleFieldValueGetter(Integer intIntervalMin, Integer intIntervalMax) {
@@ -443,10 +426,12 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取小数字段值获取器
-     *
-     * @param intIntervalMin 整数部分最小数区间
-     * @param intIntervalMax 整数部分最大数区间
-     * @param doubleInterval 小数部分位数
+     *  @param intIntervalMin
+     *  整数部分最小数区间
+     *  @param intIntervalMax
+     *  整数部分最大数区间
+     *  @param doubleInterval
+     *  小数部分位数
      * @return
      */
     protected DoubleFieldValueGetter getDoubleFieldValueGetter(Integer intIntervalMin, Integer intIntervalMax, Integer doubleInterval) {
@@ -455,11 +440,14 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取小数字段值获取器
-     *
-     * @param intIntervalMin    整数部分最小数区间
-     * @param intIntervalMax    整数部分最大数区间
-     * @param doubleIntervalMin 小数部分最小位数区间
-     * @param doubleIntervalMax 小数部分最大位数区间
+     * @param intIntervalMin
+     * 整数部分最小数区间
+     * @param intIntervalMax
+     * 整数部分最大数区间
+     * @param doubleIntervalMin
+     * 小数部分最小位数区间
+     * @param doubleIntervalMax
+     * 小数部分最大位数区间
      * @return
      */
     protected DoubleFieldValueGetter getDoubleFieldValueGetter(Integer intIntervalMin, Integer intIntervalMax, Integer doubleIntervalMin, Integer doubleIntervalMax) {
@@ -505,9 +493,10 @@ abstract class BaseFieldParser implements FieldParser {
 
     /**
      * 获取一个List类型字段值获取器
-     *
-     * @param invokers        方法执行者
-     * @param integerInterval 区间参数
+     * @param invokers
+     * 方法执行者
+     * @param integerInterval
+     * 区间参数
      * @return
      */
     protected FieldValueGetter getArrayFieldValueGetter(Invoker[] invokers, Integer[] integerInterval) {

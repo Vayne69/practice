@@ -9,9 +9,6 @@ import java.util.Optional;
 /**
  * 随机元素值执行者
  * 两个字段，一个有值，一个为null
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
- * @date 2018/12/7 20:37
  */
 public class ElementInvoker implements Invoker {
 
@@ -27,7 +24,6 @@ public class ElementInvoker implements Invoker {
 
     /**
      * 执行者，获取随机元素
-     *
      * @return
      * @throws Exception
      */
@@ -45,7 +41,6 @@ public class ElementInvoker implements Invoker {
 
     /**
      * 数组构造
-     *
      * @param arr
      */
     public ElementInvoker(Object[] arr) {
@@ -54,7 +49,6 @@ public class ElementInvoker implements Invoker {
 
     /**
      * 集合构造
-     *
      * @param list
      */
     public ElementInvoker(List list) {

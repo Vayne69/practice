@@ -6,7 +6,6 @@ import java.util.Arrays;
 /**
  * 假对象的封装类，利用此类的getObject来获取一个对象
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 public class MockBean<T> {
 
@@ -22,7 +21,6 @@ public class MockBean<T> {
 
     /**
      * 获取对象一个对象
-     *
      * @return
      */
     public T getObject() {
@@ -50,7 +48,6 @@ public class MockBean<T> {
 
     /**
      * 获取假字段集
-     *
      * @return
      */
     protected MockField[] getFields() {

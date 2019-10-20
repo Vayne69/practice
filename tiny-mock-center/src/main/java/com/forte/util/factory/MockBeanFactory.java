@@ -6,15 +6,12 @@ import com.forte.util.mockbean.MockMapBean;
 
 /**
  * MockBean的工厂
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
- * @date 2019/2/27 14:57
+ * @author Administrator
  */
 public class MockBeanFactory {
 
     /**
      * 创建一个MockBean
-     *
      * @param objectClass
      * @param fields
      * @param <T>
@@ -26,7 +23,6 @@ public class MockBeanFactory {
 
     /**
      * 创建一个MockMapBean
-     *
      * @param fields
      * @return
      */

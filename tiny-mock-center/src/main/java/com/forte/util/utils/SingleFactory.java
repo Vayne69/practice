@@ -9,10 +9,7 @@ import java.util.function.Supplier;
  * 基于CAS原理的单例工厂，提供了丰富的方法来记录或获取一个单例实例<br>
  * 单例原理为基于CAS的乐观锁懒汉式单例<br>
  * 方法内全部为final类型的静态方法，所以本类为抽象类且没有继承的必要<br>
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  * @version 2.0
- * @date 2018/12/19 15:59
  * @since JDK1.8
  **/
 public abstract class SingleFactory {
@@ -32,7 +29,6 @@ public abstract class SingleFactory {
     /**
      * 获取单例，如果没有则尝试使用反射获取一个新的，将会被记录。
      * 如果创建失败将会抛出相应的异常
-     *
      * @param <T>
      * @return
      */
@@ -66,7 +62,6 @@ public abstract class SingleFactory {
 
     /**
      * 如果存在则获取，不存在则赋值
-     *
      * @param clz
      * @param t
      * @param <T>
@@ -78,7 +73,6 @@ public abstract class SingleFactory {
 
     /**
      * 如果存在则获取，不存在则赋值，不指定class对象
-     *
      * @param t
      * @param <T>
      * @return
@@ -90,7 +84,6 @@ public abstract class SingleFactory {
 
     /**
      * 如果存在则获取，不存在则赋值
-     *
      * @param clz
      * @param supplier
      * @param <T>
@@ -102,7 +95,6 @@ public abstract class SingleFactory {
 
     /**
      * 如果存在则获取，不存在则赋值，不指定class对象
-     *
      * @param supplier
      * @param <T>
      * @return
@@ -113,7 +105,6 @@ public abstract class SingleFactory {
 
     /**
      * 重设一个单例
-     *
      * @param clz
      * @param t
      * @param <T>
@@ -125,7 +116,6 @@ public abstract class SingleFactory {
 
     /**
      * 重设一个单例，不指定class
-     *
      * @param t
      * @param <T>
      */
@@ -135,7 +125,6 @@ public abstract class SingleFactory {
 
     /**
      * 重设一个单例并获取单例实例
-     *
      * @param clz
      * @param t
      * @param <T>
@@ -148,7 +137,6 @@ public abstract class SingleFactory {
 
     /**
      * 重设一个单例并获取单例实例，不指定class
-     *
      * @param t
      * @param <T>
      * @return
@@ -159,7 +147,6 @@ public abstract class SingleFactory {
 
     /**
      * 重设一个单例
-     *
      * @param clz
      * @param supplier
      * @param <T>
@@ -171,7 +158,6 @@ public abstract class SingleFactory {
 
     /**
      * 重设一个单例，不指定class
-     *
      * @param supplier
      * @param <T>
      */
@@ -181,7 +167,6 @@ public abstract class SingleFactory {
 
     /**
      * 重设一个单例并获取单例实例
-     *
      * @param clz
      * @param supplier
      * @param <T>
@@ -193,7 +178,6 @@ public abstract class SingleFactory {
 
     /**
      * 重设一个单例并获取单例实例，不指定class
-     *
      * @param supplier
      * @param <T>
      * @return
@@ -205,7 +189,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例
-     *
      * @param clz
      * @param t
      * @param <T>
@@ -216,7 +199,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例，不指定class
-     *
      * @param t
      * @param <T>
      */
@@ -226,7 +208,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例并获取单例实例
-     *
      * @param clz
      * @param t
      * @param <T>
@@ -239,7 +220,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例并获取单例实例，不指定class
-     *
      * @param t
      * @param <T>
      * @return
@@ -250,7 +230,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例
-     *
      * @param clz
      * @param supplier
      * @param <T>
@@ -261,7 +240,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例，不指定class
-     *
      * @param supplier
      * @param <T>
      */
@@ -271,7 +249,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例并获取单例实例
-     *
      * @param clz
      * @param supplier
      * @param <T>
@@ -283,7 +260,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例，不指定class
-     *
      * @param supplier
      * @param <T>
      * @return
@@ -295,7 +271,6 @@ public abstract class SingleFactory {
 
     /**
      * 记录一个单例对象或重设一个单例-对象
-     *
      * @param clz
      * @param t
      * @param <T>
@@ -308,7 +283,6 @@ public abstract class SingleFactory {
      * 记录一个单例对象或重设一个单例-函数接口
      * 赋值相关重载方法的根方法
      * 使用synchronized标记
-     *
      * @param clz
      * @param supplier
      * @param <T>
@@ -329,7 +303,6 @@ public abstract class SingleFactory {
 
     /**
      * 内部单例类，应当是基于CAS原理的懒汉式单例类
-     *
      * @param <T>
      */
     private static final class SingleBean<T> {

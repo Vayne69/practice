@@ -6,10 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ *
  * 数组类型的注解，类型为整数类型，
  * 可以指定一个转化规则使得这个字符串数组可以转化为其他类型
  *
- * @author ForteScarlet <[email]ForteScarlet@163.com>
+ * @author Administrator
  * @since JDK1.8
  **/
 @Retention(RetentionPolicy.RUNTIME)

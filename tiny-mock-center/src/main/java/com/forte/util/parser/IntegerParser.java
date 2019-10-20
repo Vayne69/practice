@@ -9,8 +9,6 @@ import java.util.Optional;
 
 /**
  * Integer整数类型字段解析器
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 class IntegerParser extends BaseFieldParser {
 
@@ -22,7 +20,6 @@ class IntegerParser extends BaseFieldParser {
 
     /**
      * 当字段类型既不是list集合也不是数组的时候，获取字段值获取器
-     *
      * @return
      */
     @Override
@@ -54,7 +51,6 @@ class IntegerParser extends BaseFieldParser {
 
     /**
      * 当字段值是List集合时，获取字段值获取器
-     *
      * @return
      */
     @Override
@@ -71,7 +67,6 @@ class IntegerParser extends BaseFieldParser {
 
     /**
      * 当字段值是数组时，获取字段值获取器
-     *
      * @return
      */
     @Override
@@ -89,7 +84,6 @@ class IntegerParser extends BaseFieldParser {
     /**
      * 获取区间参数数组，用于获取List或数组类型的字段值获取器
      * 长度为2，分别代表最小值，最大值
-     *
      * @return
      */
     private Integer[] getInterValData() {

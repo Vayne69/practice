@@ -19,9 +19,8 @@ import java.util.stream.Collectors;
  *     <li>方法如果存在参数，请使用引用数据类型，避免使用基本数据类型</li>
  * </ul>
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  * @version 1.1
- * @date Created in 2018/12/24 20:36
  * @since JDK1.8
  **/
 public interface MethodLoader {
@@ -30,17 +29,15 @@ public interface MethodLoader {
 
     /**
      * 加载某类中指定方法名的方法。如果有重载方法将会全部判断
-     *
-     * @param loadClz    指定类
-     * @param methodName 方法名
+     * @param loadClz       指定类
+     * @param methodName    方法名
      * @return 处理结果
      */
     MethodLoader append(Class loadClz, String methodName);
 
     /**
      * 加载指定方法
-     *
-     * @param method 要加载的方法
+     * @param method    要加载的方法
      * @return 处理结果
      */
     MethodLoader append(Method method);
@@ -49,8 +46,7 @@ public interface MethodLoader {
 
     /**
      * 直接加载方法
-     *
-     * @param methods 要加载的方法列表
+     * @param methods   要加载的方法列表
      * @return 处理结果
      */
     MethodLoader appends(Method... methods);
@@ -58,15 +54,13 @@ public interface MethodLoader {
 
     /**
      * 加载class中的全部方法
-     *
-     * @param loadClz 加载方法的类
+     * @param loadClz   加载方法的类
      * @return 处理结果
      */
     MethodLoader appendAll(Class loadClz);
 
     /**
      * 根据匹配规则对类中的方法名进行过滤
-     *
      * @param loadClz   加载方法的类
      * @param predicate 匹配规则
      * @return 处理结果
@@ -75,7 +69,6 @@ public interface MethodLoader {
 
     /**
      * 根据匹配规则对类中的方法进行过滤
-     *
      * @param loadClz   加载方法的类
      * @param predicate 匹配规则
      * @return 处理结果
@@ -84,27 +77,24 @@ public interface MethodLoader {
 
     /**
      * 根据方法名列表加载class中的指定方法
-     *
-     * @param loadClz 加载方法的类
-     * @param names   方法名列表
+     * @param loadClz   加载方法的类
+     * @param names     方法名列表
      * @return 处理结果
      */
     MethodLoader appendByNames(Class loadClz, String[] names);
 
     /**
      * 根据方法名列表加载class中的指定方法
-     *
-     * @param loadClz 加载方法的类
-     * @param names   方法名列表
+     * @param loadClz   加载方法的类
+     * @param names     方法名列表
      * @return 处理结果
      */
     MethodLoader appendByNames(Class loadClz, List<String> names);
 
     /**
      * 根据正则对方法名匹配并加载class中符合条件的方法
-     *
-     * @param loadClz 加载方法的类
-     * @param regex   正则表达式
+     * @param loadClz   加载方法的类
+     * @param regex     正则表达式
      * @return 处理结果
      */
     MethodLoader appendByRegex(Class loadClz, String regex);
@@ -113,7 +103,6 @@ public interface MethodLoader {
 
     /**
      * 对方法进行过滤
-     *
      * @param predicate 过滤规则
      * @return 处理结果
      */
@@ -122,7 +111,6 @@ public interface MethodLoader {
 
     /**
      * 判断此方法是否可行
-     *
      * @param method
      * @return
      */
@@ -147,7 +135,6 @@ public interface MethodLoader {
 
     /**
      * 将预载内容加载至方法集
-     *
      * @return 加载成功数量
      */
     LoadResults load();
@@ -160,17 +147,15 @@ public interface MethodLoader {
 
     /**
      * 加载某类中指定方法名的方法。如果有重载方法将会全部判断
-     *
-     * @param loadClz    指定类
-     * @param methodName 方法名
+     * @param loadClz       指定类
+     * @param methodName    方法名
      * @return 处理结果
      */
     LoadResults add(Class loadClz, String methodName);
 
     /**
      * 加载指定方法
-     *
-     * @param method 要加载的方法
+     * @param method    要加载的方法
      * @return 处理结果
      */
     LoadResults add(Method method);
@@ -179,8 +164,7 @@ public interface MethodLoader {
 
     /**
      * 直接加载方法
-     *
-     * @param methods 要加载的方法列表
+     * @param methods   要加载的方法列表
      * @return 处理结果
      */
     LoadResults adds(Method... methods);
@@ -188,15 +172,13 @@ public interface MethodLoader {
 
     /**
      * 加载class中的全部方法
-     *
-     * @param loadClz 加载方法的类
+     * @param loadClz   加载方法的类
      * @return 处理结果
      */
     LoadResults addAll(Class loadClz);
 
     /**
      * 根据匹配规则对类中的方法名进行过滤
-     *
      * @param loadClz   加载方法的类
      * @param predicate 匹配规则
      * @return 处理结果
@@ -205,7 +187,6 @@ public interface MethodLoader {
 
     /**
      * 根据匹配规则对类中的方法进行过滤
-     *
      * @param loadClz   加载方法的类
      * @param predicate 匹配规则
      * @return 处理结果
@@ -214,27 +195,24 @@ public interface MethodLoader {
 
     /**
      * 根据方法名列表加载class中的指定方法
-     *
-     * @param loadClz 加载方法的类
-     * @param names   方法名列表
+     * @param loadClz   加载方法的类
+     * @param names     方法名列表
      * @return 处理结果
      */
     LoadResults addByNames(Class loadClz, String[] names);
 
     /**
      * 根据方法名列表加载class中的指定方法
-     *
-     * @param loadClz 加载方法的类
-     * @param names   方法名列表
+     * @param loadClz   加载方法的类
+     * @param names     方法名列表
      * @return 处理结果
      */
     LoadResults addByNames(Class loadClz, List<String> names);
 
     /**
      * 根据正则对方法名匹配并加载class中符合条件的方法
-     *
-     * @param loadClz 加载方法的类
-     * @param regex   正则表达式
+     * @param loadClz   加载方法的类
+     * @param regex     正则表达式
      * @return 处理结果
      */
     LoadResults addByRegex(Class loadClz, String regex);
@@ -243,21 +221,18 @@ public interface MethodLoader {
 
     /**
      * 等待加载的方法集
-     *
      * @return
      */
     Set<Method> waiting();
 
     /**
      * 等待加载的方法集的数量
-     *
      * @return
      */
     int waitingNum();
 
     /**
      * 判断预载内容是否为空
-     *
      * @return 判断结果
      */
     boolean isEmpty();

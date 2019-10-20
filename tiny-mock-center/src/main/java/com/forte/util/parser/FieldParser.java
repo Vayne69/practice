@@ -4,7 +4,6 @@ import com.forte.util.fieldvaluegetter.FieldValueGetter;
 import com.forte.util.mockbean.MockField;
 
 /**
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 interface FieldParser {
 
@@ -34,7 +33,6 @@ interface FieldParser {
 
     /**
      * 获取一个假字段对象，为参数解析器准备
-     *
      * @return
      */
     MockField getMockField();

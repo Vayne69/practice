@@ -15,7 +15,7 @@ public class Test {
         // Mock.set(User.class);
         // MockObject<User> userMockObject = Mock.get(User.class);
         // userMockObject.getStream(20).forEach(System.out::println);
-        String s = "{\n" +
+        /*String s = "{\n" +
                 "  \"string|1-2\": \"@string\",\n" +
                 "  \"integer\": \"@integer(10,30)\",\n" +
                 "  \"float\": \"@float(60,100,2,2)\",\n" +
@@ -41,7 +41,8 @@ public class Test {
                 "  \"csentence\": \"@csentence\",\n" +
                 "  \"range\": \"@range(2, 10)\",\n" +
                 "  \"address\": \"@address\"\n" +
-                "}";
+                "}";*/
+        String s = "{\"a|1-3\":\"@title\"}";
         Map<String, Object> map1 = JSON.parseObject(s);
         Mock.set("userMap1", map1);
         MockObject map12 = Mock.get("userMap1");

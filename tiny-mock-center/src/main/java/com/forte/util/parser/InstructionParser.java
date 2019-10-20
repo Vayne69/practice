@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * 指令字段解析器
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 class InstructionParser extends BaseFieldParser {
 
@@ -21,7 +20,6 @@ class InstructionParser extends BaseFieldParser {
 
     /**
      * 当字段是数组的时候，进行解析
-     *
      * @return
      */
     @Override
@@ -59,7 +57,6 @@ class InstructionParser extends BaseFieldParser {
 
     /**
      * 当字段是list集合的时候进行解析
-     *
      * @return
      */
     @Override
@@ -103,6 +100,16 @@ class InstructionParser extends BaseFieldParser {
      */
     @Override
     public FieldValueGetter parserForNotListOrArrayFieldValueGetter() {
+        /*
+            假如字段类型为Object类型且存在区间参数，则认为这是一个需要转化为数组的类型，即认为字段类型为List类型，直接使用List字段值生成器
+            区间参数只要存在左参数即为存在
+         */
+        boolean isObjectToList = this.fieldClass.equals(Object.class) && (intervalMin != null);
+        if (isObjectToList) {
+            return this.parserForListFieldValueGetter();
+        }
+
+
         //字段值获取器
         FieldValueGetter fieldValueGetter;
         //解析指令,查找指令中的@方法
@@ -160,7 +167,6 @@ class InstructionParser extends BaseFieldParser {
 
     /**
      * 获取区间参数区间，如果没有区间参数则返回null
-     *
      * @return
      */
     private Integer[] getIntervalData() {

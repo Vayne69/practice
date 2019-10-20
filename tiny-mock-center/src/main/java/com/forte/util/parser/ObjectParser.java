@@ -5,8 +5,6 @@ import com.forte.util.invoker.Invoker;
 
 /**
  * 引用数据类型字段解析器
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 class ObjectParser extends BaseFieldParser {
 
@@ -18,18 +16,22 @@ class ObjectParser extends BaseFieldParser {
 
     /**
      * 当字段类型既不是集合也不是数组的时候
-     *
      * @return
      */
     @Override
     public FieldValueGetter parserForNotListOrArrayFieldValueGetter() {
-        //直接获取一个额默认值参数获取器 - 使用Lambda表达式创建
+        // 如果字段类型为Object且存在左区间参数，则认为这是一个List类型
+        boolean isList = this.fieldClass.equals(Object.class) && (intervalMin != null);
+
+        if (isList) {
+            return parserForListFieldValueGetter();
+        }
+        //直接获取一个默认值参数获取器
         return () -> defaultValue;
     }
 
     /**
      * 如果字段类型是集合类型
-     *
      * @return
      */
     @Override
@@ -40,7 +42,6 @@ class ObjectParser extends BaseFieldParser {
 
     /**
      * 如果字段类型是数组类型
-     *
      * @return
      */
     @Override
@@ -52,7 +53,6 @@ class ObjectParser extends BaseFieldParser {
 
     /**
      * 获取区间参数区间，如果没有区间参数则返回区间[1,1]
-     *
      * @return
      */
     private Integer[] getIntervalData() {

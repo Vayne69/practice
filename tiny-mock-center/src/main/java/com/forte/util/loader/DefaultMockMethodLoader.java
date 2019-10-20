@@ -15,9 +15,7 @@ import java.util.stream.Collectors;
  *     <li>方法必须有返回值(非void)</li>
  * </ul>
  * <strong>※ 本类目前不保证线程安全</strong>
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
- * @date Created in 2018/12/26 17:33
+ * @author Administrator
  * @since JDK1.8
  **/
 public class DefaultMockMethodLoader implements MethodLoader {
@@ -34,9 +32,8 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 根据方法名加载一个方法，如果方法名对应了多个方法，则会全部进行判断，因此可能会有多个方法
-     *
-     * @param loadClz    指定类
-     * @param methodName 方法名
+     * @param loadClz       指定类
+     * @param methodName    方法名
      * @return 返回自身-链式
      */
     @Override
@@ -49,8 +46,7 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 添加一个方法
-     *
-     * @param method 要加载的方法
+     * @param method    要加载的方法
      * @return 返回自身-链式
      */
     @Override
@@ -63,8 +59,7 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 加载多个方法
-     *
-     * @param methods 要加载的方法列表
+     * @param methods   要加载的方法列表
      * @return 返回自身-链式
      */
     @Override
@@ -78,8 +73,7 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 加载类中的全部方法
-     *
-     * @param loadClz 加载方法的类
+     * @param loadClz   加载方法的类
      * @return 返回自身-链式
      */
     @Override
@@ -89,7 +83,6 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 根据方法名筛选方法筛选
-     *
      * @param loadClz   加载方法的类
      * @param predicate 匹配规则
      * @return 返回自身-链式
@@ -103,7 +96,6 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 根据方法筛选方法筛选
-     *
      * @param loadClz   加载方法的类
      * @param predicate 匹配规则
      * @return 返回自身-链式
@@ -117,9 +109,8 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 加载指定方法名的多个方法
-     *
-     * @param loadClz 加载方法的类
-     * @param names   方法名列表
+     * @param loadClz   加载方法的类
+     * @param names     方法名列表
      * @return 返回自身-链式
      */
     @Override
@@ -133,9 +124,8 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 加载指定方法名的多个方法
-     *
-     * @param loadClz 加载方法的类
-     * @param names   方法名列表
+     * @param loadClz   加载方法的类
+     * @param names     方法名列表
      * @return 返回自身-链式
      */
     @Override
@@ -145,9 +135,8 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 根据正则规则匹配方法中的方法名
-     *
-     * @param loadClz 加载方法的类
-     * @param regex   正则表达式
+     * @param loadClz   加载方法的类
+     * @param regex     正则表达式
      * @return 返回自身-链式
      */
     @Override
@@ -157,7 +146,6 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 过滤
-     *
      * @param predicate 过滤规则
      * @return 过滤后的结果
      */
@@ -298,7 +286,6 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 要加载的内容是否为空
-     *
      * @return 是否为空
      */
     @Override
@@ -308,7 +295,6 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 加载
-     *
      * @return 加载结果
      */
     @Override
@@ -319,14 +305,13 @@ public class DefaultMockMethodLoader implements MethodLoader {
 
     /**
      * 将传入的方法加载至随机方法集中并返回添加结果报告
-     *
      * @param methods
      * @return
      */
     private LoadResults load(Set<Method> methods) {
         //遍历要加载的方法并添加，并获取结果返回值
         Set<BranchResult<Method>> collect = methods.stream().flatMap(m -> {
-            Map<String, Method> methodMap = new HashMap<>(5);
+            Map<String, Method> methodMap = new HashMap<>(8);
             //格式化方法名，并作为key
             String key = m.getName() + "("
                     + Arrays.stream(m.getParameterTypes())

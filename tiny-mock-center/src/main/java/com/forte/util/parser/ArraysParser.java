@@ -9,8 +9,6 @@ import java.util.Optional;
 
 /**
  * 数组参数解析器
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
  */
 class ArraysParser extends BaseFieldParser {
 
@@ -34,7 +32,6 @@ class ArraysParser extends BaseFieldParser {
 
     /**
      * 当字段是一个list类型集合的时候
-     *
      * @return
      */
     @Override
@@ -46,7 +43,6 @@ class ArraysParser extends BaseFieldParser {
 
     /**
      * 当字段是一个数组类型的时候
-     *
      * @return
      */
     @Override
@@ -58,7 +54,6 @@ class ArraysParser extends BaseFieldParser {
 
     /**
      * 获取数组字段值获取器
-     *
      * @return
      */
     private FieldValueGetter getArrayFieldValueGetter() {
@@ -73,7 +68,6 @@ class ArraysParser extends BaseFieldParser {
 
     /**
      * 获取集合字段值获取器
-     *
      * @return
      */
     private FieldValueGetter getListFieldValueGetter() {
@@ -89,7 +83,6 @@ class ArraysParser extends BaseFieldParser {
 
     /**
      * 获取区间参数区间，如果没有区间参数则返回区间[1,1]
-     *
      * @return
      */
     private Integer[] getIntervalData() {

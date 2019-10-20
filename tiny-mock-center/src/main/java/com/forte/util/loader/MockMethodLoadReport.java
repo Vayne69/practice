@@ -6,8 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
- * @date 2018/12/27 17:10
+ * @author Administrator
  */
 public class MockMethodLoadReport implements LoadResults {
 
@@ -27,8 +26,8 @@ public class MockMethodLoadReport implements LoadResults {
 
     /**
      * 将结果作为结果返回，分为成功和失败两种结果
-     *
-     * @return 成功与否的结果集
+     * @return
+     * 成功与否的结果集
      */
     @Override
     public Map<Boolean, Set<Method>> loadResults() {
@@ -40,8 +39,8 @@ public class MockMethodLoadReport implements LoadResults {
 
     /**
      * 成功结果的数量
-     *
-     * @return 成功结果的数量
+     * @return
+     * 成功结果的数量
      */
     @Override
     public int successNums() {
@@ -50,7 +49,6 @@ public class MockMethodLoadReport implements LoadResults {
 
     /**
      * 失败的结果数量
-     *
      * @return 失败的结果数量
      */
     @Override
@@ -60,7 +58,6 @@ public class MockMethodLoadReport implements LoadResults {
 
     /**
      * 将加载错误的方法返回，并告知其失败原因
-     *
      * @return 错误的方法以及失败原因
      */
     @Override
@@ -69,10 +66,10 @@ public class MockMethodLoadReport implements LoadResults {
     }
 
 
+
     /**
      * 构造
-     *
-     * @param results 结果集
+     * @param results   结果集
      */
     MockMethodLoadReport(Set<BranchResult<Method>> results) {
         this.RESULTS = results;

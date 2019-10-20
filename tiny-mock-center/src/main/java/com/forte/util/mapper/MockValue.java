@@ -8,8 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 应用于注解映射, 使用在字段上
  * 映射值为字符串类型
- *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  * @since JDK1.8
  **/
 @Retention(RetentionPolicy.RUNTIME)

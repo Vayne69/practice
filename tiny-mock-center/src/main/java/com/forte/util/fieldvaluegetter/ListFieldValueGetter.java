@@ -5,6 +5,7 @@ import com.forte.util.utils.MethodUtil;
 import com.forte.util.utils.RandomUtil;
 
 
+
 import javax.script.ScriptException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * List集合的字段值获取器
  * 有较大的可能出现一些类型异常，请注意一定按照规范填写
  *
- * @author ForteScarlet <[163邮箱地址]ForteScarlet@163.com>
+ * @author Administrator
  */
 public class ListFieldValueGetter implements FieldValueGetter<List> {
 
