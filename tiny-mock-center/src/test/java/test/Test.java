@@ -5,6 +5,7 @@ import com.forte.util.Mock;
 import com.forte.util.mockbean.MockObject;
 
 import java.util.Map;
+import java.util.concurrent.*;
 
 /**
  * @author ForteScarlet <[email]ForteScarlet@163.com>
@@ -42,13 +43,26 @@ public class Test {
                 "  \"range\": \"@range(2, 10)\",\n" +
                 "  \"address\": \"@address\"\n" +
                 "}";*/
-        String s = "{\"a|1-3\":\"@title\"}";
-        Map<String, Object> map1 = JSON.parseObject(s);
-        Mock.set("userMap1", map1);
-        MockObject map12 = Mock.get("userMap1");
-        System.out.println(map12.getOne());
-        String json = JSON.toJSONString(map12.getOne());
-        System.out.println(json);
+        ThreadFactory factory = (r) -> {
+            Thread thread = new Thread(r);
+            thread.setName("demo-pool-%d");
+            return thread;
+        };
+        ExecutorService executorService = new ThreadPoolExecutor(30, 50, 0,
+                TimeUnit.SECONDS, new ArrayBlockingQueue<>(20), factory);
+
+        for (int i = 0; i < 30; i++) {
+            executorService.execute(() -> {
+                String s = "{\"a|1-3\":\"@title\"}";
+                Map<String, Object> map1 = JSON.parseObject(s);
+                Mock.reset("userMap1", map1);
+                MockObject map12 = Mock.get("userMap1");
+                System.out.println(map12.getOne());
+                String json = JSON.toJSONString(map12.getOne());
+                System.out.println(json);
+            });
+        }
+        executorService.shutdown();
     }
 
 }

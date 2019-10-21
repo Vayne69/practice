@@ -1,10 +1,11 @@
 package com.forte.util.utils;
 
 
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author : Yang Jian
@@ -12,6 +13,7 @@ import java.util.Properties;
  */
 
 public class PropertiesUtils {
+    private final static Map<String, Properties> HASH_MAP = new ConcurrentHashMap<>();
 
     /**
      * 根据key读取value
@@ -19,7 +21,7 @@ public class PropertiesUtils {
      * @param pathName
      * @return
      */
-    public static Properties readValue(String pathName) throws IOException {
+    public static Properties loadProperties(String pathName) throws IOException {
         Properties prop = new Properties();
         InputStream in = null;
         try {
@@ -40,5 +42,30 @@ public class PropertiesUtils {
     }
 
     private PropertiesUtils() {
+    }
+
+    public static Properties readValue(String pathName) {
+        if (pathName == null || pathName.trim().length() == 0) {
+            return null;
+        }
+        Properties properties = HASH_MAP.get(pathName);
+        if (properties == null) {
+            synchronized (pathName.intern()) {
+                properties = HASH_MAP.get(pathName);
+                if (properties == null) {
+                    try {
+                        properties = loadProperties(pathName);
+                        HASH_MAP.put(pathName, properties);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return properties;
+    }
+
+    public static void clear() {
+        HASH_MAP.clear();
     }
 }
