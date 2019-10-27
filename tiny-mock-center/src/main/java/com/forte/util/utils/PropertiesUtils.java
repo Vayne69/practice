@@ -21,7 +21,7 @@ public class PropertiesUtils {
      * @param pathName
      * @return
      */
-    public static Properties loadProperties(String pathName) throws IOException {
+    public static Properties loadProperties(String pathName) {
         Properties prop = new Properties();
         InputStream in = null;
         try {
@@ -29,6 +29,9 @@ public class PropertiesUtils {
             if (in != null) {
                 prop.load(in);
             }
+            return prop;
+        } catch (IOException e) {
+            e.printStackTrace();
             return prop;
         } finally {
             try {
@@ -46,19 +49,15 @@ public class PropertiesUtils {
 
     public static Properties readValue(String pathName) {
         if (pathName == null || pathName.trim().length() == 0) {
-            return null;
+            return new Properties();
         }
         Properties properties = HASH_MAP.get(pathName);
         if (properties == null) {
             synchronized (pathName.intern()) {
                 properties = HASH_MAP.get(pathName);
                 if (properties == null) {
-                    try {
-                        properties = loadProperties(pathName);
-                        HASH_MAP.put(pathName, properties);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    properties = loadProperties(pathName);
+                    HASH_MAP.put(pathName, properties);
                 }
             }
         }
