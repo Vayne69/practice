@@ -24,7 +24,7 @@
         <shiro.version>1.7.1</shiro.version>
         <shiro-redis.version>3.1.0</shiro-redis.version>
         <fastjson.version>1.2.47</fastjson.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <thymeleaf-extras.version>3.0.4.RELEASE</thymeleaf-extras.version>
     </properties>
 
