@@ -1,0 +1,4 @@
+# Auto Configuration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com/example/customerfeign/config/CustomerFeignConfig,\
+com/example/customerfeign/feign/MockProperties
