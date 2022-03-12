@@ -1,0 +1,23 @@
+{
+  "groups": [
+    {
+      "name": "zlzn.mock",
+      "type": "com.example.customerfeign.feign.MockProperties",
+      "sourceType": "com.example.customerfeign.feign.MockProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "zlzn.mock.apis",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.example.customerfeign.feign.MockProperties"
+    },
+    {
+      "name": "zlzn.mock.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.example.customerfeign.feign.MockProperties",
+      "defaultValue": false
+    }
+  ],
+  "hints": []
+}
