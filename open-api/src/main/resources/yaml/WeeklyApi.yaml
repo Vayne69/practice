@@ -145,19 +145,51 @@ paths:
           schema:
             $ref: "#/definitions/R"
 
+  /weekly/export/{projectId}:
+    get:
+      tags:
+        - "WeeklyController"
+      summary: "导出周报"
+      description: ""
+      operationId: "exportWeekly"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "projectId"
+          description: "projectId"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "成功"
+          schema:
+            $ref: "#/definitions/R"
+        "405":
+          description: "Invalid input"
 definitions:
   WeeklyDto:
     type: "object"
     required:
-      - "project"
+      - "projectId"
+      - "projectName"
+      - "projectCode"
       - "period"
       - "content"
       - "issue"
       - "createUser"
     properties:
-      project:
+      projectId:
         type: "string"
-        description: "项目名"
+        description: "projectId"
+      projectCode:
+        type: "string"
+        description: "projectCode"
+      projectName:
+        type: "string"
+        description: "projectName"
       period:
         type: "string"
         description: "时间（*月第*周）"
