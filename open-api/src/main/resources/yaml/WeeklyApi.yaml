@@ -1,0 +1,187 @@
+swagger: "2.0"
+info:
+  description: "周报相关接口"
+  version: "1.0.0"
+  title: "周报 相关接口"
+host: "10.71.1.29:10097"
+basePath: "/"
+tags:
+  - name: "WeeklyController"
+    description: "周报"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /weekly/list:
+    get:
+      tags:
+        - "WeeklyController"
+      summary: "查询周报列表"
+      description: ""
+      operationId: "listWeekly"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "pageNum"
+          description: "页码"
+          required: false
+          default: 1
+          type: "integer"
+          format: "int32"
+        - in: "query"
+          name: "pageSize"
+          description: "页数"
+          required: false
+          default: 10
+          type: "integer"
+          format: "int32"
+        - in: "body"
+          name: "weeklyDto"
+          description: "周报实体类"
+          required: false
+          schema:
+            $ref: "#/definitions/WeeklyDto"
+      responses:
+        "200":
+          description: "成功"
+          schema:
+            $ref: "#/definitions/R"
+  /weekly:
+    post:
+      tags:
+        - "WeeklyController"
+      summary: "添加周报"
+      description: ""
+      operationId: "addWeekly"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "weeklyDto"
+          description: "周报实体类"
+          required: true
+          schema:
+            $ref: "#/definitions/WeeklyDto"
+      responses:
+        "200":
+          description: "成功"
+          schema:
+            $ref: "#/definitions/R"
+        "405":
+          description: "Invalid input"
+  /weekly/{id}:
+    get:
+      tags:
+        - "WeeklyController"
+      summary: "获取周报详情"
+      description: ""
+      operationId: "getWeekly"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "id"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "成功"
+          schema:
+            $ref: "#/definitions/R"
+    put:
+      tags:
+        - "WeeklyController"
+      summary: "修改周报"
+      description: ""
+      operationId: "updateWeekly"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "id"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "weeklyDto"
+          description: "参数"
+          required: true
+          schema:
+            $ref: "#/definitions/WeeklyDto"
+      responses:
+        "200":
+          description: "成功"
+          schema:
+            $ref: "#/definitions/R"
+    delete:
+      tags:
+        - "WeeklyController"
+      summary: "删除周报"
+      description: ""
+      operationId: "deleteWeekly"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "id"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "成功"
+          schema:
+            $ref: "#/definitions/R"
+
+definitions:
+  WeeklyDto:
+    type: "object"
+    required:
+      - "project"
+      - "period"
+      - "content"
+      - "issue"
+      - "createUser"
+    properties:
+      project:
+        type: "string"
+        description: "项目名"
+      period:
+        type: "string"
+        description: "时间（*月第*周）"
+        example: "四月第三周"
+      content:
+        type: "string"
+        description: "工作内容"
+      issue:
+        type: "string"
+        description: "存在的问题"
+      createUser:
+        type: "string"
+        description: "创建人id"
+  R:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      data:
+        type: array
+        items:
+         $ref: "#/definitions/WeeklyDto"
+      success:
+        type: "boolean"
+      message:
+        type: "string"

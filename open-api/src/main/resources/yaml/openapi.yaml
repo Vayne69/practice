@@ -1,0 +1,123 @@
+openapi: 3.0.1
+info:
+  title: springboot 集成swagger测试
+  description: 测试swagger
+  license:
+    name: Apache
+    url: http://www.apache.org/
+  version: version 0.01
+
+tags:
+- name: UserRestApi
+  description: 提供用户相关的rest api
+paths:
+  /user/:
+    post:
+      tags:
+      - 用户相关接口
+      summary: 新增用户接口
+      operationId: addUserUsingPOST
+      requestBody:
+        description: user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+      deprecated: false
+      x-codegen-request-body-name: user
+  /user/{id}:
+    get:
+      tags:
+      - 用户相关接口
+      summary: 通过id查找用户接口
+      operationId: findByIdUsingGET
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+        403:
+          description: 资源不可用
+          content: {}
+      deprecated: false
+    put:
+      tags:
+      - 用户相关接口
+      summary: 更新用户信息接口
+      operationId: updateUsingPUT
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+      deprecated: false
+      x-codegen-request-body-name: user
+    delete:
+      tags:
+      - 用户相关接口
+      summary: 删除用户接口
+      operationId: deleteUsingDELETE
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: boolean
+      deprecated: false
+components:
+  schemas:
+    User:
+      title: 用户实体
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 用户id
+          format: int32
+        name:
+          type: string
+          description: 用户名
